@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# MERN - User Authentication and Product Display App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This web application allows users to register, log in, and view a list of products. Users can also mark products as favorites, and their selections will be remembered when they log in again.
 
-## Available Scripts
+## Frontend
 
-In the project directory, you can run:
+The frontend of this application is built using React.js and includes the following pages:
 
-### `npm start`
+### User Registration
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![screenshot-frontend](./frontend1.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Users can register by providing their name, username, and password.
+- Upon successful registration, they are redirected to the login page.
 
-### `npm test`
+### User Login
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![screenshot-frontend](./frontend2.png)
 
-### `npm run build`
+- Registered users can log in using their username and password.
+- After successful login, users are redirected to the homepage.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Home Page
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![screenshot-frontend](./frontend3.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Authenticated users can view a list of products.
+- Products are displayed in a paginated table format with a fixed number of products per page.
 
-### `npm run eject`
+![screenshot-frontend](./frontend4.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Users can mark products as favorites by checking checkboxes next to each product.
+- Products marked as favorites are remembered for the user.
+- Users can log out by clicking the "Logout" button.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The backend of this application is built using Node.js and Express.js, and it includes the following API endpoints:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### User Registration (POST /api/register)
 
-## Learn More
+- Allows users to register with a unique username.
+- Stores user information securely in the database.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### User Login (POST /api/login)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Validates user credentials (username and password).
+- Issues a JSON Web Token (JWT) upon successful login.
+- JWT is used for authentication on protected routes.
 
-### Code Splitting
+### Protected Home Page (GET /api/home)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Requires a valid JWT token for authentication.
+- Serves a list of products from the database.
+- Allows users to mark products as favorites, and these selections are stored for each user.
+- Supports pagination for displaying products.
 
-### Analyzing the Bundle Size
+## Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Frontend: React.js, Axios
+- Backend: Node.js, Express.js, MongoDB (for user and product data)
+- Authentication: JSON Web Tokens (JWT)
+- Styling: CSS
 
-### Making a Progressive Web App
+## Getting Started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Clone this repository to your local machine.
 
-### Advanced Configuration
+2. Install dependencies:
+   cd client
+   npm install
+   cd ../server
+   npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+3. Set up your MongoDB database and update the connection string in `server.js`.
 
-### Deployment
+4. Start the frontend and backend servers:
+   cd client
+   npm start
+   cd ../server
+   npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+5. Access the application at `http://localhost:3000` in your web browser.
 
-### `npm run build` fails to minify
+## Future Enhancements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- User profile page to display user details and favorite products.
+- Improved error handling and user feedback.
+- User password hashing for enhanced security.
+
+Feel free to contribute or suggest improvements to this project!
+
+Veeral Kansara.
